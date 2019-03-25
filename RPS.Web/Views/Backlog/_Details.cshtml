@@ -40,6 +40,7 @@
 
             @(Html.Kendo().DropDownListFor(m => m.SelectedItemType)
                       .BindTo(Model.ItemTypes)
+                      .Value(Model.SelectedItemType.ToString())
                       .HtmlAttributes(new { style = "width: 100%" })
                       .Template("<img src='" + Url.Content("~/Content/images/icon_#:data.Text#.png") + "' class='backlog-icon' />" +
                                 "<span>#: data.Text #</span>")
@@ -56,6 +57,7 @@
 
             @(Html.Kendo().DropDownListFor(m => m.SelectedStatus)
                 .BindTo(Model.Statuses)
+                .Value(Model.SelectedStatus.ToString())
                 .HtmlAttributes(new { style = "width: 100%" })
             )
             @Html.ValidationMessageFor(model => model.SelectedStatus, "", new { @class = "text-danger" })
@@ -68,6 +70,7 @@
 
             @(Html.Kendo().DropDownListFor(m => m.SelectedPriority)
                 .BindTo(Model.Priorities)
+                .Value(Model.SelectedPriority.ToString())
                 .HtmlAttributes(new { style = "width: 100%" })
                 .Template("<span class='badge priority-#:data.Text.toLowerCase()#'>#: data.Text #</span>")
             )

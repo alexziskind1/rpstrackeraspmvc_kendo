@@ -7,43 +7,81 @@
         <h1 class="h2" id="itemTitle">@Model.Title</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button onclick="location.href = '@(Url.Action("Details", "Backlog", new { id = Model.Id }))'">Details</button>
-                <button onclick="location.href = '@(Url.Action("Tasks", "Backlog", new { id = Model.Id }))'">Tasks</button>
-                <button onclick="location.href = '@(Url.Action("Chitchat", "Backlog", new { id = Model.Id }))'">Chitchat</button>
+                @*<button onclick="location.href = '@(Url.Action("Details", "Backlog", new { id = Model.Id }))'">Details</button>
+                    <button onclick="location.href = '@(Url.Action("Tasks", "Backlog", new { id = Model.Id }))'">Tasks</button>
+                    <button onclick="location.href = '@(Url.Action("Chitchat", "Backlog", new { id = Model.Id }))'">Chitchat</button>*@
+
+
             </div>
         </div>
     </div>
 
 </div>
 
-@{
-    switch (ViewBag.screen)
-    {
-        case DetailScreenEnum.Details:
-            <div id="detailsScreenContainer">
+@(Html.Kendo().TabStrip()
+        .Name("tabstrip")
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+    .Text("Details")
+    .LinkHtmlAttributes(new { onclick= "pushUrl(\"RPS Project Tracker\", \"/Backlog/" + Model.Id + "/Details\")" })
+    .LoadContentFrom("DetailsForm", "Backlog", Model.Id)
+            .Selected(ViewBag.screen == DetailScreenEnum.Details);
+
+
+            tabstrip.Add()
+.Text("Tasks")
+.LinkHtmlAttributes(new { onclick = "pushUrl(\"RPS Project Tracker\", \"/Backlog/" + Model.Id + "/Tasks\")" })
+.LoadContentFrom("TasksForm", "Backlog", Model.Id)
+.Selected(ViewBag.screen == DetailScreenEnum.Tasks);
+
+            tabstrip.Add()
+.Text("Chitchat")
+.LinkHtmlAttributes(new { onclick = "pushUrl(\"RPS Project Tracker\", \"/Backlog/" + Model.Id + "/Chitchat\")" })
+.LoadContentFrom("ChitchatForm", "Backlog", Model.Id)
+.Selected(ViewBag.screen == DetailScreenEnum.Chitchat);
+
+
+        }
+
+                )
+
+
+)
+
+@*@{
+        switch (ViewBag.screen)
+        {
+            case DetailScreenEnum.Details:
                 @Html.Partial("_Details", new PtItemDetailsVm(Model, ViewBag.users))
-            </div>
-            break;
-        case DetailScreenEnum.Tasks:
-            <div id="tasksScreenContainer">
+                break;
+            case DetailScreenEnum.Tasks:
                 @Html.Partial("_Tasks", new PtItemTasksVm(Model))
-            </div>
 
-            @section scripts {
-                @Html.Partial("_TasksScripts")
-            }
 
-            break;
-        case DetailScreenEnum.Chitchat:
-            <div id="chitchatScreenContainer">
+
+                break;
+            case DetailScreenEnum.Chitchat:
                 @Html.Partial("_Chitchat", new PtItemCommentsVm(Model, ViewBag.currentUser))
-            </div>
-            break;
-    }
-}
+                break;
+        }
+    }*@
 
 
 @section styles {
     @Styles.Render("~/Content/detailcss")
 }
 
+@section scripts {
+    @Html.Partial("_TasksScripts")
+
+    <script>
+        function pushUrl(title, url) {
+            if ("undefined" !== typeof history.pushState) {
+                history.pushState(null, title, url);
+            } else {
+                window.location.assign(url);
+            }
+        }
+    </script>
+}

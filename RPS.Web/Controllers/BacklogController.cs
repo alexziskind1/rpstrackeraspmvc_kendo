@@ -80,10 +80,21 @@ namespace RPS.Web.Controllers
             return View("Details", item);
         }
 
+        [Route("{id:int}/DetailsForm")]
+        public ActionResult DetailsForm(int id)
+        {
+            var item = rpsItemsRepo.GetItemById(id);
+            var users = rpsUserRepo.GetAll();
+
+            var model = new PtItemDetailsVm(item, users.ToList());
+
+            return PartialView("_Details", model);
+        }
+
         // POST: Backlog/Detail/5
         [HttpPost]
-        [Route("{id:int}/Details")]
-        public ActionResult Details(int id, PtItemDetailsVm vm)
+        [Route("{id:int}/DetailsForm")]
+        public ActionResult DetailsForm(int id, PtItemDetailsVm vm)
         {
             var item = rpsItemsRepo.GetItemById(id);
             var users = rpsUserRepo.GetAll();
@@ -96,11 +107,13 @@ namespace RPS.Web.Controllers
                 // TODO: Add update logic here
                 var updatedItem = rpsItemsRepo.UpdateItem(vm.ToPtUpdateItem());
 
-                return View("Details", updatedItem);
+                //return View("Details", updatedItem);
+                return RedirectToAction("Details", id);
             }
             catch
             {
-                return View("Details", item);
+                //return View("Details", item);
+                return RedirectToAction("Details", id);
             }
         }
 
@@ -108,15 +121,27 @@ namespace RPS.Web.Controllers
         public ActionResult Tasks(int id)
         {
             var item = rpsItemsRepo.GetItemById(id);
+            var users = rpsUserRepo.GetAll();
+            var currentUser = users.Single(u => u.Id == CURRENT_USER_ID);
             ViewBag.screen = DetailScreenEnum.Tasks;
-
+            ViewBag.users = users;
+            ViewBag.currentUser = currentUser;
 
             return View("Details", item);
         }
 
+        [Route("{id:int}/TasksForm")]
+        public ActionResult TasksForm(int id)
+        {
+            var item = rpsItemsRepo.GetItemById(id);
+            var model = new PtItemTasksVm(item);
+            return PartialView("_Tasks", model);
+        }
+
+
         [HttpPost]
-        [Route("{id:int}/Tasks")]
-        public ActionResult Tasks(int id, PtItemTasksVm vm)
+        [Route("{id:int}/TasksForm")]
+        public ActionResult TasksForm(int id, PtItemTasksVm vm)
         {
             ViewBag.screen = DetailScreenEnum.Tasks;
 
@@ -187,14 +212,26 @@ namespace RPS.Web.Controllers
             var currentUser = users.Single(u => u.Id == CURRENT_USER_ID);
 
             ViewBag.screen = DetailScreenEnum.Chitchat;
+            ViewBag.users = users;
             ViewBag.currentUser = currentUser;
 
             return View("Details", item);
         }
 
+        [Route("{id:int}/ChitchatForm")]
+        public ActionResult ChitchatForm(int id)
+        {
+            var item = rpsItemsRepo.GetItemById(id);
+            var users = rpsUserRepo.GetAll();
+            var currentUser = users.Single(u => u.Id == CURRENT_USER_ID);
+
+            var model = new PtItemCommentsVm(item, currentUser);
+            return PartialView("_Chitchat", model);
+        }
+
         [HttpPost]
-        [Route("{id:int}/Chitchat")]
-        public ActionResult Chitchat(int id, PtItemCommentsVm vm)
+        [Route("{id:int}/ChitchatForm")]
+        public ActionResult ChitchatForm(int id, PtItemCommentsVm vm)
         {
             ViewBag.screen = DetailScreenEnum.Chitchat;
 
