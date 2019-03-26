@@ -11,7 +11,12 @@
         </div>
 
         <div class="btn-group mr-2">
-            <button onclick="location.href = '@(Url.Action("Create", "Backlog"))'">Add</button>
+            @(Html.Kendo().Button()
+                .Name("btnAdd")
+                .Icon("plus")
+                .Content("Add")
+                .HtmlAttributes(new { @class = "k-primary", onclick = "location.href = '" + Url.Action("Create", "Backlog") + "'" })
+             )
         </div>
 
     </div>
