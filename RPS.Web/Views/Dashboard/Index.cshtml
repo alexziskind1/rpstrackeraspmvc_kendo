@@ -126,6 +126,37 @@
                 <div class="col-sm-12">
                     <h3>All issues</h3>
 
+                    @(Html.Kendo().Chart().Name("chart")
+                        .Title("All Issue")
+                        .CategoryAxis(config =>
+                        {
+                            config.Categories(Model.Categories)
+                                    .Date()
+                                    .BaseUnit(ChartAxisBaseUnit.Months)
+                                  .MajorGridLines(gl =>
+                                  {
+                                      gl.Visible(false);
+                                  });
+                            config.Labels(lbl =>
+                            {
+                                lbl.Rotation("auto");
+                            });
+                        })
+                        .SeriesDefaults(config =>
+                        {
+                            config.Column().Gap(0.06).Opacity(0.7).Stack(true);
+                        })
+                        .Series(config =>
+                        {
+                            config.Column(Model.ItemsOpenByMonth).Name("Open").Color("#CC3458");
+                            config.Column(Model.ItemsClosedByMonth).Name("Closed").Color("#35C473");
+                        })
+                        .Legend(leg =>
+                        {
+                            leg.Position(ChartLegendPosition.Bottom);
+                        })
+                        .Theme("sass")
+                     )
                 </div>
             </div>
 

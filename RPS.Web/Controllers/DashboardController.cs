@@ -42,8 +42,9 @@ namespace RPS.Web.Controllers
 
             var users = rpsUserRepo.GetAll();
             var statusCounts = rpsDashRepo.GetStatusCounts(filter);
+            var filteredIssues = rpsDashRepo.GetFilteredIssues(filter);
 
-            PtDashboardVm vm = new PtDashboardVm(statusCounts,users.ToList(), userId);
+            PtDashboardVm vm = new PtDashboardVm(statusCounts, filteredIssues, users.ToList(), userId);
 
             if (months.HasValue)
             {
