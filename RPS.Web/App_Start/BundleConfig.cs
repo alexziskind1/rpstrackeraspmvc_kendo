@@ -32,7 +32,7 @@ namespace RPS.Web
 
 
             bundles.Add(new StyleBundle("~/Content/kendocss").Include(
-                      "~/Content/kendo/2019.1.220/kendo.default-v2.min.css"));
+                      "~/Content/kendo/2019.1.220/kendo.bootstrap-v4.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/dashboardcss").Include(
                 "~/Content/styles/dashboard.css"));
