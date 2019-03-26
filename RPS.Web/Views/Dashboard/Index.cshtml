@@ -20,30 +20,53 @@
         </div>
 
         <div class="btn-toolbar mb-2 mb-md-0">
+
+            <div class="btn-group mr-2">
+
+                @(Html.Kendo().ComboBoxFor(model => model.SelectedAssigneeId)
+                                            .BindTo(Model.Assignees)
+                                            .DataTextField("FullName")
+                                            .DataValueField("Id")
+                                            .Placeholder("Select assignee...")
+                                            .Events(events =>
+                                            {
+                                                events.Change("onAssigneeChange");
+                                            })
+                                            .HtmlAttributes(new { style = "width:260px;" })
+                                            .Template("<div class'row' style='margin-left: 5px;'>" +
+                                                        "<img src='" + Url.Content("~/Content/#:data.Avatar#") + "' class='li-avatar rounded mx-auto' />" +
+                                                        "<span style='margin-left: 5px;'>#:data.FullName#</span></div>"
+                                            )
+
+            )
+
+        </div>
+
+
             <div class="btn-group mr-2">
                 @(Html.Kendo().Button()
-                                    .Name("btnFilterMonths3").Content("3 Months").Icon("calendar").Deferred()
-                                    .HtmlAttributes(new { @class = ViewBag.months == 3 ? "k-state-active" : "" })
-                                    .Events(events =>
-                                    {
-                                        events.Click("function() { onFilterItemClick(3); }");
-                                    })
+                                            .Name("btnFilterMonths3").Content("3 Months").Icon("calendar").Deferred()
+                                            .HtmlAttributes(new { @class = ViewBag.months == 3 ? "k-state-active" : "" })
+                                            .Events(events =>
+                                            {
+                                                events.Click("function() { onFilterItemClick(3); }");
+                                            })
                 )
 
                 @(Html.Kendo().Button().Name("btnFilterMonths6").Content("6 Months").Icon("calendar").Deferred()
-                                    .HtmlAttributes(new
-                                    {
-                                        @class = ViewBag.months == 6 ? "k-state-active" : "",
-                                        onclick = "location.href = '" + Html.Raw(Url.Action("Index", "Dashboard", new { months = 6, userId = ViewBag.userId })) + "';"
-                                    })
+                                            .HtmlAttributes(new
+                                            {
+                                                @class = ViewBag.months == 6 ? "k-state-active" : "",
+                                                onclick = "location.href = '" + Html.Raw(Url.Action("Index", "Dashboard", new { months = 6, userId = ViewBag.userId })) + "';"
+                                            })
                 )
 
                 @(Html.Kendo().Button().Name("btnFilterMonths12").Content("1 Year").Icon("calendar").Deferred()
-                                   .HtmlAttributes(new
-                                   {
-                                       @class = ViewBag.months == 12 ? "k-state-active" : "",
-                                       onclick = "location.href = '" + Html.Raw(Url.Action("Index", "Dashboard", new { months = 12, userId = ViewBag.userId })) + "';"
-                                   })
+                                           .HtmlAttributes(new
+                                           {
+                                               @class = ViewBag.months == 12 ? "k-state-active" : "",
+                                               onclick = "location.href = '" + Html.Raw(Url.Action("Index", "Dashboard", new { months = 12, userId = ViewBag.userId })) + "';"
+                                           })
                 )
 
 
@@ -122,11 +145,28 @@
 
         @{
             var userIdParam = "";
+            var monthsParam = "";
             if (ViewBag.userId != null)
             {
                 userIdParam = "&userId=" + ViewBag.userId;
             }
+            if (ViewBag.months != null)
+            {
+                monthsParam = "months=" + ViewBag.months;
+            }
         }
+
+
+        function onAssigneeChange(e) {
+            var userId = e.sender.value();
+            if (userId) {
+                location.href = `/?userId=${userId}&@Html.Raw(monthsParam)`;
+            } else {
+                location.href = `/?@Html.Raw(monthsParam)`;
+            }
+        }
+
+
 
         function onFilterItemClick(months) {
               location.href = `/?months=${months}@Html.Raw(userIdParam)`; 

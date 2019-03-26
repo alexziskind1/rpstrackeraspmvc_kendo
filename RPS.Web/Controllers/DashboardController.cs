@@ -14,12 +14,15 @@ namespace RPS.Web.Controllers
 
 
         private readonly IPtDashboardRepository rpsDashRepo;
+        private readonly IPtUserRepository rpsUserRepo;
 
         public DashboardController(
-      IPtDashboardRepository rpsDashData
+      IPtDashboardRepository rpsDashData,
+       IPtUserRepository rpsUserData
       )
         {
             rpsDashRepo = rpsDashData;
+            rpsUserRepo = rpsUserData;
         }
 
         public ActionResult Index(int? userId, int? months)
@@ -37,9 +40,10 @@ namespace RPS.Web.Controllers
                 UserId = userId.HasValue ? userId.Value : 0
             };
 
+            var users = rpsUserRepo.GetAll();
             var statusCounts = rpsDashRepo.GetStatusCounts(filter);
 
-            PtDashboardVm vm = new PtDashboardVm(statusCounts);
+            PtDashboardVm vm = new PtDashboardVm(statusCounts,users.ToList(), userId);
 
             if (months.HasValue)
             {
