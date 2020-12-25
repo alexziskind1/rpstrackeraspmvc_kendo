@@ -17,7 +17,17 @@ namespace RPS.Web.Models.ViewModels
         public int IssueCountClosed { get; set; }
 
         public int IssueCountActive { get { return IssueCountOpen + IssueCountClosed; } }
-        public decimal IssueCloseRate { get { return Math.Round((decimal)IssueCountClosed / (decimal)IssueCountActive * 100m, 2); } }
+        public decimal IssueCloseRate
+        {
+            get
+            {
+                if (IssueCountActive == 0)
+                {
+                    return 0m;
+                }
+                return Math.Round((decimal)IssueCountClosed / (decimal)IssueCountActive * 100m, 2);
+            }
+        }
 
         public List<DateTime> Categories { get; set; }
 
