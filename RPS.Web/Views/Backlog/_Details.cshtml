@@ -20,7 +20,8 @@
     <div class="form-group row">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
-            @Html.TextAreaFor(model => model.Description, new { @class = "k-textbox", style = "width: 100%; height: 60px;" })
+
+            @Html.Kendo().TextAreaFor(model => model.Description).HtmlAttributes(new { @class = "form-control", style = "width: 100%; height: 60px;" })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
