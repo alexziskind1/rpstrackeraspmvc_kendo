@@ -23,15 +23,15 @@ namespace RPS.Web
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendojs").Include(
-                        "~/Scripts/kendo/2021.3.914/kendo.all.min.js",
-                        "~/Scripts/kendo/2021.3.914/kendo.aspnetmvc.min.js"));
+                        "~/Scripts/kendo/2023.2.718/kendo.all.min.js",
+                        "~/Scripts/kendo/2023.2.718/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/styles/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendocss").Include(
-                      "~/Content/kendo/2021.3.914/kendo.bootstrap-v4.min.css"));
+                      "~/Content/kendo/2023.2.718/kendo.bootstrap-4.css"));
 
             bundles.Add(new StyleBundle("~/Content/dashboardcss").Include(
                 "~/Content/styles/dashboard.css"));
