@@ -73,32 +73,32 @@ namespace RPS.Web.Controllers
             var users = rpsUserRepo.GetAll();
             var currentUser = users.Single(u => u.Id == CURRENT_USER_ID);
 
-            ViewBag.screen = DetailScreenEnum.Details;
+            ViewBag.screen = DetailScreenEnum.Form;
             ViewBag.users = users;
             ViewBag.currentUser = currentUser;
 
             return View("Details", item);
         }
 
-        [Route("{id:int}/DetailsForm")]
-        public ActionResult DetailsForm(int id)
+        [Route("{id:int}/Form")]
+        public ActionResult Form(int id)
         {
             var item = rpsItemsRepo.GetItemById(id);
             var users = rpsUserRepo.GetAll();
 
-            var model = new PtItemDetailsVm(item, users.ToList());
+            var model = new PtItemFormVm(item, users.ToList());
 
-            return PartialView("_Details", model);
+            return PartialView("_Form", model);
         }
 
         // POST: Backlog/Detail/5
         [HttpPost]
-        [Route("{id:int}/DetailsForm")]
-        public ActionResult DetailsForm(int id, PtItemDetailsVm vm)
+        [Route("{id:int}/Form")]
+        public ActionResult Form(int id, PtItemFormVm vm)
         {
             var item = rpsItemsRepo.GetItemById(id);
             var users = rpsUserRepo.GetAll();
-            ViewBag.screen = DetailScreenEnum.Details;
+            ViewBag.screen = DetailScreenEnum.Form;
             ViewBag.users = users;
 
             try
@@ -108,12 +108,12 @@ namespace RPS.Web.Controllers
                 var updatedItem = rpsItemsRepo.UpdateItem(vm.ToPtUpdateItem());
 
                 //return View("Details", updatedItem);
-                return RedirectToAction("Details", id);
+                return RedirectToAction("Form", id);
             }
             catch
             {
                 //return View("Details", item);
-                return RedirectToAction("Details", id);
+                return RedirectToAction("Form", id);
             }
         }
 

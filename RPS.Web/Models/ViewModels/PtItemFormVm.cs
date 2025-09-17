@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RPS.Web.Models.ViewModels
 {
-    public class PtItemDetailsVm
+    public class PtItemFormVm
     {
         private readonly List<ItemTypeEnum> _itemTypes = new List<ItemTypeEnum> { ItemTypeEnum.Bug, ItemTypeEnum.Chore, ItemTypeEnum.Impediment, ItemTypeEnum.PBI };
         private readonly List<StatusEnum> _statuses = new List<StatusEnum> { StatusEnum.Closed, StatusEnum.Open, StatusEnum.ReOpened, StatusEnum.Submitted };
@@ -60,7 +60,7 @@ namespace RPS.Web.Models.ViewModels
             get { return new SelectList(_users, "Id", "FullName", SelectedAssigneeId); }
         }
 
-        public PtItemDetailsVm()
+        public PtItemFormVm()
         {
             SelectedItemType =ItemTypeEnum.Bug;
             SelectedStatus = StatusEnum.Open;
@@ -69,7 +69,7 @@ namespace RPS.Web.Models.ViewModels
             SelectedAssigneeId = 0;
         }
 
-        public PtItemDetailsVm(PtItem item, List<PtUser> users)
+        public PtItemFormVm(PtItem item, List<PtUser> users)
         {
             Title = item.Title;
             Description = item.Description;

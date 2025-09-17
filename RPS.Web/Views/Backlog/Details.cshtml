@@ -2,34 +2,34 @@
 @using RPS.Web.Models.ViewModels;
 @model RPS.Core.Models.PtItem
 
-<div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1 class="h2" id="itemTitle">
-            <span class="k-icon k-i-edit"></span>
-        @Model.Title
-        </h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-                @*<button onclick="location.href = '@(Url.Action("Details", "Backlog", new { id = Model.Id }))'">Details</button>
-                    <button onclick="location.href = '@(Url.Action("Tasks", "Backlog", new { id = Model.Id }))'">Tasks</button>
-                    <button onclick="location.href = '@(Url.Action("Chitchat", "Backlog", new { id = Model.Id }))'">Chitchat</button>*@
+<div class="detail-page page">
 
-
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-auto">
+                <div class="frame-details d-flex flex-column align-items-start gap-2" style="width: 700px;">
+                    <div class="page-title">
+                        <span class="k-icon k-i-edit"></span> @Model.Title
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-</div>
+    <div class="container">
+        <div style="margin-top: 20px">
 
-@(Html.Kendo().TabStrip()
+
+
+            @(Html.Kendo().TabStrip()
         .Name("tabstrip")
         .Items(tabstrip =>
         {
             tabstrip.Add()
-    .Text("Details")
-    .LinkHtmlAttributes(new { onclick= "pushUrl(\"RPS Project Tracker\", \"/Backlog/" + Model.Id + "/Details\")" })
-    .LoadContentFrom("DetailsForm", "Backlog", Model.Id)
-            .Selected(ViewBag.screen == DetailScreenEnum.Details);
+    .Text("Form")
+    .LinkHtmlAttributes(new { onclick= "pushUrl(\"RPS Project Tracker\", \"/Backlog/" + Model.Id + "/Form\")" })
+    .LoadContentFrom("Form", "Backlog", Model.Id)
+            .Selected(ViewBag.screen == DetailScreenEnum.Form);
 
 
             tabstrip.Add()
@@ -48,43 +48,45 @@
         }
 
                 )
+            )
+
+        </div>
+    </div>
+            @*@{
+                    switch (ViewBag.screen)
+                    {
+                        case DetailScreenEnum.Details:
+                            @Html.Partial("_Details", new PtItemDetailsVm(Model, ViewBag.users))
+                            break;
+                        case DetailScreenEnum.Tasks:
+                            @Html.Partial("_Tasks", new PtItemTasksVm(Model))
 
 
-)
 
-@*@{
-        switch (ViewBag.screen)
-        {
-            case DetailScreenEnum.Details:
-                @Html.Partial("_Details", new PtItemDetailsVm(Model, ViewBag.users))
-                break;
-            case DetailScreenEnum.Tasks:
-                @Html.Partial("_Tasks", new PtItemTasksVm(Model))
+                            break;
+                        case DetailScreenEnum.Chitchat:
+                            @Html.Partial("_Chitchat", new PtItemCommentsVm(Model, ViewBag.currentUser))
+                            break;
+                    }
+                }*@
 
 
-
-                break;
-            case DetailScreenEnum.Chitchat:
-                @Html.Partial("_Chitchat", new PtItemCommentsVm(Model, ViewBag.currentUser))
-                break;
-        }
-    }*@
-
-
-@section styles {
-    @Styles.Render("~/Content/detailcss")
-}
-
-@section scripts {
-    @Html.Partial("_TasksScripts")
-
-    <script>
-        function pushUrl(title, url) {
-            if ("undefined" !== typeof history.pushState) {
-                history.pushState(null, title, url);
-            } else {
-                window.location.assign(url);
+            @section styles {
+                @Styles.Render("~/Content/detailcss")
             }
-        }
-    </script>
-}
+
+            @section scripts {
+                @Html.Partial("_TasksScripts")
+
+                <script>
+                    function pushUrl(title, url) {
+                        if ("undefined" !== typeof history.pushState) {
+                            history.pushState(null, title, url);
+                        } else {
+                            window.location.assign(url);
+                        }
+                    }
+                </script>
+            }
+
+        </div>

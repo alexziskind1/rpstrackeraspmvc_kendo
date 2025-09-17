@@ -1,4 +1,4 @@
-﻿@model RPS.Web.Models.ViewModels.PtItemDetailsVm
+﻿@model RPS.Web.Models.ViewModels.PtItemFormVm
 
 @using (Html.BeginForm())
 {
@@ -9,7 +9,7 @@
 
     @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
             @Html.Kendo().TextBoxFor(model => model.Title)
@@ -17,16 +17,16 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
 
-            @Html.Kendo().TextAreaFor(model => model.Description).HtmlAttributes(new { style = "width: 100%; height: 60px;" })
+            @Html.Kendo().TextAreaFor(model => model.Description).HtmlAttributes(new { style = "width: 100%; height: 100px;" })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.Estimate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
             @Html.Kendo().SliderFor(model => model.Estimate).Min(0).Max(20).LargeStep(1).HtmlAttributes(new { style="width: 100%;" })
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.SelectedItemType, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
 
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.SelectedStatus, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
 
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.SelectedPriority, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
 
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         @Html.LabelFor(model => model.SelectedAssigneeId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
         <div class="col-sm-6">
             @(Html.Kendo().DropDownListFor(m => m.SelectedAssigneeId)
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mb-3">
         <div class="offset-sm-2 col-sm-10">
             <input type="submit" value="Save" class="btn btn-primary" />
         </div>

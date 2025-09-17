@@ -3,7 +3,7 @@ namespace RPS.Web.Models.Routing
 {
     public enum DetailScreenEnum
     {
-        Details,
+        Form,
         Tasks,
         Chitchat
     }
