@@ -1,15 +1,41 @@
 ﻿<script>
 
+    //document.addEventListener('click', function (event) {
+
+    //    if (!event.target.matches('.pt-btn-task-update')) return;
+
+    //    let btnObj = $(event.target);
+    //    let itemId = $('#ItemId').val();
+    //    let taskId = btnObj.attr('data-task-id');
+    //    let newTitle = $('#pt-task-input-' + taskId).val();
+    //    let checked = $('#pt-task-checkbox-' + taskId).prop('checked');
+    //    btnObj.attr('formaction', `/Backlog/${itemId}/TaskUpdate/${taskId}?completed=${checked}&title=${newTitle}`);
+    //}, false);
+
+</script>
+<script>
+
     document.addEventListener('click', function (event) {
 
-        if (!event.target.matches('.pt-btn-task-update')) return;
+        // Check if the clicked element or its parent is the update button
+        let targetElement = event.target;
+        if (!targetElement.matches('.pt-btn-task-update')) {
+            targetElement = targetElement.closest('.pt-btn-task-update');
+            if (!targetElement) return;
+        }
 
-        let btnObj = $(event.target);
+        let btnObj = $(targetElement);
         let itemId = $('#ItemId').val();
         let taskId = btnObj.attr('data-task-id');
         let newTitle = $('#pt-task-input-' + taskId).val();
         let checked = $('#pt-task-checkbox-' + taskId).prop('checked');
-        btnObj.attr('formaction', `/Backlog/${itemId}/TaskUpdate/${taskId}?completed=${checked}&title=${newTitle}`);
+
+        // Build the URL with parameters
+        let updateUrl = `/Backlog/${itemId}/TaskUpdate/${taskId}?completed=${checked}&title=${encodeURIComponent(newTitle)}`;
+
+        // Set the formaction attribute
+        btnObj.attr('formaction', updateUrl);
+
     }, false);
 
 </script>
