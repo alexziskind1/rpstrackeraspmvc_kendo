@@ -47,7 +47,7 @@
                     })
                     .Name("grid")
                     .RowAction(row => {
-                        row.HtmlAttributes.Add("onclick", "location.href = '/Backlog/" + row.DataItem.Id + "/Details'");
+                        row.HtmlAttributes.Add("onclick", "location.href = '/Detail/" + row.DataItem.Id + "'");
                     })
                     .Columns(columns =>
                     {
@@ -103,7 +103,7 @@
         function onChange(arg) {
             var rows = arg.sender.select();
             var itemId = $($(rows[0]).find('.pt-indicator')[0]).attr('data-id');
-            window.location.href = `/Backlog/${itemId}/Details`;
+            window.location.href = `/Detail/${itemId}/Form`;
         }
     </script>
 }

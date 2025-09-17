@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 
     document.addEventListener('click', function (event) {
 
@@ -15,8 +15,8 @@
         let newTitle = $('#pt-task-input-' + taskId).val();
         let checked = $('#pt-task-checkbox-' + taskId).prop('checked');
 
-        // Build the URL with parameters
-        let updateUrl = `/Backlog/${itemId}/TaskUpdate/${taskId}?completed=${checked}&title=${encodeURIComponent(newTitle)}`;
+        // Build the URL with parameters - Updated to use Detail controller
+        let updateUrl = `/Detail/${itemId}/TaskUpdate/${taskId}?completed=${checked}&title=${encodeURIComponent(newTitle)}`;
 
         // Set the formaction attribute
         btnObj.attr('formaction', updateUrl);
