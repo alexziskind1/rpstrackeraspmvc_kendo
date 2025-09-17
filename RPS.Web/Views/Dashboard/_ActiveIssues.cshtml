@@ -1,0 +1,73 @@
+﻿@model RPS.Web.Models.ViewModels.PtActiveIssuesVm
+
+<div class="active-issues-container">
+    <div class="numbers">
+        <div class="label-container">
+            <div class="base-input-label">
+                <div class="count-label color-default">
+                    @Model.IssueCountActive
+                </div>
+            </div>
+        </div>
+        <div class="label-full-width">
+            <div class="base-input-label">
+                <div class="text-label color-default">
+                    Active Issues
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="numbers">
+        <div class="label-container">
+            <div class="base-input-label">
+                <div class="count-label color-closed">
+                    @Model.StatusCounts.ClosedItemsCount
+                </div>
+            </div>
+        </div>
+        <div class="label-full-width">
+            <div class="base-input-label">
+                <div class="text-label color-closed">
+                    Closed Issues
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="numbers">
+        <div class="label-container">
+            <div class="base-input-label">
+                <div class="count-label color-open">
+                    @Model.StatusCounts.OpenItemsCount
+                </div>
+            </div>
+        </div>
+        <div class="label-full-width">
+            <div class="base-input-label">
+                <div class="text-label color-open">
+                    Open Issues
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="numbers">
+        <div class="close-rate-container">
+            <div class="label-container">
+                <div class="base-input-label">
+                    <div class="count-label color-default">
+                        @Model.StatusCounts.ClosedItemsCount
+                    </div>
+                </div>
+            </div>
+            <div class="label-full-width">
+                <div class="base-input-label">
+                    <div class="text-label color-default">
+                        Close Rate
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

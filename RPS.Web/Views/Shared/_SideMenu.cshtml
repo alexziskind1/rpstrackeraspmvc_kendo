@@ -1,0 +1,48 @@
+﻿@* _Sidebar.cshtml *@
+@using System.Web.Mvc
+
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                @Html.ActionLink("Dashboard", "Index", "Dashboard", null, new { @class = "nav-link active" })
+                <span class="sr-only">(current)</span>
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("My Items", "My", "Backlog", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Open Items", "Open", "Backlog", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Done Items", "Closed", "Backlog", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Users", "Index", "Users", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Reports", "Index", "Reports", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            @Html.ActionLink("+", "Create", "Reports", null, new { @class = "d-flex align-items-center text-muted" })
+        </h6>
+
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                @Html.ActionLink("Current month", "CurrentMonth", "Reports", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Last quarter", "LastQuarter", "Reports", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Social engagement", "Social", "Reports", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Year-end sale", "YearEnd", "Reports", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </div>
+</nav>

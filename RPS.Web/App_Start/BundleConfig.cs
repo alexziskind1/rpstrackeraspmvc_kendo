@@ -24,13 +24,16 @@ namespace RPS.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/styles/site.css"));
+                      "~/Content/Styles/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendocss").Include(
                       "~/Content/kendo/2024.4.1112/bootstrap-4.css"));
 
             bundles.Add(new StyleBundle("~/Content/dashboardcss").Include(
                 "~/Content/styles/dashboard.css"));
+
+            bundles.Add(new StyleBundle("~/Content/activeissuescss").Include(
+                "~/Content/Styles/active-issues.css"));
 
             bundles.Add(new StyleBundle("~/Content/backlogcss").Include(
                 "~/Content/styles/backlog.css"));
