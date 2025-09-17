@@ -39,23 +39,15 @@
 
                 @Html.EditorFor(model => model.NewTaskTitle, new { htmlAttributes = new { @class = "form-control pt-text-task-add", placeholder = "Enter new task..." } })
 
-                @*<input value={newTaskTitle}
-            onChange={onNewTaskTitleChanged}
-            placeholder="Enter new task..."
-            class="form-control pt-text-task-add"
-            name="newTask" />*@
-
                 <button type="submit" class="btn btn-primary">Add</button>
             </div>
 
-            @*<NewTaskForm addTask={addTask} />*@
-
             <div style="width: 1126px;
-            height: 1px;
-            padding-right: 2.81px;
-            justify-content: center;
-            align-items: center;
-            display: inline-flex;">
+                height: 1px;
+                padding-right: 2.81px;
+                justify-content: center;
+                align-items: center;
+                display: inline-flex;">
                 <div style="width: 1123.19px;
                 height: 1px;
                 position: relative;
@@ -71,21 +63,8 @@
                         <div class="input-group">
                             <div class="input-group-text">
                                 @Html.EditorFor(modelItem => task.Completed, new { htmlAttributes = new { @checked = task.Completed, id = "pt-task-checkbox-" + task.Id } })
-                                @*<input type="checkbox"
-            checked={task.completed}
-            onChange={toggleTapped}
-            aria-label="Checkbox for following text input"
-            name={"checked" + task.id} />*@
                             </div>
                             @Html.EditorFor(modelItem => task.Title, new { htmlAttributes = new { @class = "form-control", id = "pt-task-input-" + task.Id } })
-                            @*<input value={titleLocal}
-                                   onChange={onTitleInputChange}
-                                   onFocus={onFocused}
-                                   onBlur={onBlurred}
-                                   type="text"
-                                   class="form-control"
-                                   aria-label="Text input with checkbox"
-                                   name={"tasktitle" + task.id} />*@
                         </div>
                     </div>
 
@@ -113,10 +92,6 @@
                                         align-items: flex-start;
                                         display: flex;">
 
-
-                                        @*<button class="btn btn-danger pt-btn-task-delete" type="submit" formaction="/Backlog/@Model.ItemId/TaskDelete/@task.Id" data-task-id="@task.Id">Delete</button>*@
-
-
                                         <button class="pt-btn-task-update"
                                                 type="submit"
                                                 data-task-id="@task.Id"
@@ -136,21 +111,6 @@
                                             </svg>
                                         </button>
 
-
-                                        @*<span style="color: red; cursor: pointer; width: 16px;"
-              data-action="/Backlog/@Model.ItemId/TaskDelete/@task.Id"
-              data-task-id="@task.Id">
-            <svg viewBox="0 0 512 512">
-                <path d="M416 96h-96V64c0-17.6-14.4-32-32-32h-96c-17.6 0-32 14.4-32 32v32H64v64h32v288c0 17.6 14.4 32 32 32h224c17.6 0 32-14.4 32-32V160h32zM192 64h95.9l.1.1V96h-96c.1-.1.1-32.1 0-32m160 384H128.1l-.1-.1V160h32v256h32V160h32v256h32V160h32v256h32V160h32z" />
-            </svg>
-        </span>*@
-
-                                        @*<span style="color: red; cursor: pointer; width: 16px;">
-            onClick={deleteTapped}>
-            <svg viewBox="0 0 512 512">
-                <path d="M416 96h-96V64c0-17.6-14.4-32-32-32h-96c-17.6 0-32 14.4-32 32v32H64v64h32v288c0 17.6 14.4 32 32 32h224c17.6 0 32-14.4 32-32V160h32zM192 64h95.9l.1.1V96h-96c.1-.1.1-32.1 0-32m160 384H128.1l-.1-.1V160h32v256h32V160h32v256h32V160h32v256h32V160h32z" />
-            </svg>
-        </span>*@
                                     </div>
                                 </div>
                             </div>
@@ -159,72 +119,7 @@
                 </div>
             }
 
-
-
-
-
-
-            @*{tasks.map((task) => (
-        <PtTaskDisplayComponent key={task.id}
-                                task={task}
-                                onToggleTaskCompletion={toggleTapped}
-                                onDeleteTask={deleteTapped}
-                                onTaskFocused={onTaskFocused}
-                                onTaskBlurred={onTaskBlurred}
-                                taskTitleChange={taskTitleChange} />
-        ))}*@
-
-
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <hr />
-
-
-
-
-
-    <div class="form-row align-items-center">
-        <div class="col-sm-6">
-            @*@Html.EditorFor(model => model.NewTaskTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter new task..." } })*@
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-    </div>
-
-    <hr />
-
-
-    @*foreach (var task in Model.Tasks)
-    {
-        <div class="input-group mb-3 col-sm-8">
-            <div class="input-group-prepend">
-                <div class="input-group-text">
-                    @Html.EditorFor(modelItem => task.Completed, new { htmlAttributes = new { @checked = task.Completed, id = "pt-task-checkbox-" + task.Id } })
-                </div>
-            </div>
-            @Html.EditorFor(modelItem => task.Title, new { htmlAttributes = new { @class = "form-control", id = "pt-task-input-" + task.Id } })
-
-            <div class="input-group-append">
-                @{
-                    var done = task.Completed ? "true" : "false";
-                }
-                <button class="btn btn-primary pt-btn-task-update" type="submit" data-task-id="@task.Id">Update</button>
-                <button class="btn btn-danger pt-btn-task-delete" type="submit" formaction="/Backlog/@Model.ItemId/TaskDelete/@task.Id" data-task-id="@task.Id">Delete</button>
-            </div>
-        </div>
-    }*@
 }
 
