@@ -40,6 +40,9 @@ namespace RPS.Web
 
             bundles.Add(new StyleBundle("~/Content/detailcss").Include(
                 "~/Content/styles/detail.css"));
+
+            bundles.Add(new StyleBundle("~/Content/chitchatcss").Include(
+                "~/Content/styles/chitchat.css"));
         }
     }
 }

@@ -654,6 +654,7 @@
     <Content Include="Content\kendo\2025.3.825\material-sky.css" />
     <Content Include="Content\kendo\2025.3.825\material-smoke.css" />
     <Content Include="Content\Styles\backlog.css" />
+    <Content Include="Content\Styles\chitchat.css" />
     <Content Include="Content\Styles\dashboard.css" />
     <Content Include="Content\Styles\detail.css" />
     <Content Include="favicon.ico" />

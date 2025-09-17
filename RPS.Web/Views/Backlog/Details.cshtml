@@ -52,41 +52,42 @@
 
         </div>
     </div>
-            @*@{
-                    switch (ViewBag.screen)
-                    {
-                        case DetailScreenEnum.Details:
-                            @Html.Partial("_Details", new PtItemDetailsVm(Model, ViewBag.users))
-                            break;
-                        case DetailScreenEnum.Tasks:
-                            @Html.Partial("_Tasks", new PtItemTasksVm(Model))
+    @*@{
+            switch (ViewBag.screen)
+            {
+                case DetailScreenEnum.Details:
+                    @Html.Partial("_Details", new PtItemDetailsVm(Model, ViewBag.users))
+                    break;
+                case DetailScreenEnum.Tasks:
+                    @Html.Partial("_Tasks", new PtItemTasksVm(Model))
 
 
 
-                            break;
-                        case DetailScreenEnum.Chitchat:
-                            @Html.Partial("_Chitchat", new PtItemCommentsVm(Model, ViewBag.currentUser))
-                            break;
-                    }
-                }*@
-
-
-            @section styles {
-                @Styles.Render("~/Content/detailcss")
+                    break;
+                case DetailScreenEnum.Chitchat:
+                    @Html.Partial("_Chitchat", new PtItemCommentsVm(Model, ViewBag.currentUser))
+                    break;
             }
+        }*@
 
-            @section scripts {
-                @Html.Partial("_TasksScripts")
 
-                <script>
-                    function pushUrl(title, url) {
-                        if ("undefined" !== typeof history.pushState) {
-                            history.pushState(null, title, url);
-                        } else {
-                            window.location.assign(url);
-                        }
-                    }
-                </script>
+    @section styles {
+        @Styles.Render("~/Content/detailcss")
+        @Styles.Render("~/Content/chitchatcss")
+    }
+
+    @section scripts {
+        @Html.Partial("_TasksScripts")
+
+        <script>
+            function pushUrl(title, url) {
+                if ("undefined" !== typeof history.pushState) {
+                    history.pushState(null, title, url);
+                } else {
+                    window.location.assign(url);
+                }
             }
+        </script>
+    }
 
-        </div>
+</div>
